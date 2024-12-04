@@ -15,7 +15,7 @@ function CarouselEffect() {
       >
         {/* To address the React warning about unique key props, index added as a unique key to each img element inside the map function.  CarouselEffect.jsx:9 Warning: Each child in a list should have a unique "key" prop.*/}
         {img.map((imgItemLink, index) => {
-          return <img src={imgItemLink} alt="" key={index} />;
+          return <img src={imgItemLink} alt="" key={imgItemLink} />;
         })}
       </Carousel>
       {/* so that the imgages fade at the bottom; the div below overlaps with bottom portion of the carousel  */}

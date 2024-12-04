@@ -59,8 +59,8 @@ function Header() {
                 <option value="">En</option>
               </select>
             </Link>
-            {/* three components  */}
-            <Link to="">
+            {/* three components : signIn, Returns&Orders, and cart */}
+            <Link to="/auth">
               <p>Sign In</p>
               <span>Accounts & Lists</span>
             </Link>
