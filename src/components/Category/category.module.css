@@ -1,0 +1,103 @@
+/* .category {
+    height: 150px;
+    width: 350px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+ 
+}
+
+.category img {
+    width:100%;
+    object-fit:contain ;
+    max-height:250px; 
+    padding: 0px,10px;
+
+}
+
+.category a {
+    text-decoration: none;
+    color: rgb(35, 35, 35)
+}
+
+.category h2,
+.category a {
+    padding: 5px;
+    margin-left: 15px;
+}
+
+.category p {
+    font-size: 12px;
+    font-weight: bold;
+    color:rgb(9,132,209)
+}
+
+.category_container {
+    position: relative;
+    margin-top: -10px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    place-items: center;
+    gap:20px;
+    max-width:1600px;
+}
+
+
+ */
+
+
+
+
+
+
+
+.category_container {
+    position: relative;
+    margin-top: -10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; /* Space between cards */
+    align-items: center;
+    max-width: 1600px; /* Ensure it doesn't exceed the width of the container */
+    padding: 10px; /* Prevent overflow */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    margin-bottom: 30px; /* Add space below the category container */
+}
+
+.category {
+    height: 300px;
+    width: 100%; /* Adjust to fit within the grid */
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden; /* Prevent overflow from causing misalignment */
+}
+
+.category img {
+    width: 100%;
+    object-fit: contain;
+    max-height: 250px;
+    padding: 0 10px; /* Ensure padding is applied correctly */
+}
+
+.category a {
+    text-decoration: none;
+    color: rgb(35, 35, 35);
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Space out items evenly */
+}
+
+.category h2,
+.category a {
+    padding: 5px;
+    margin-left: 15px;
+}
+
+.category h2 {
+    font-size: 18px; /* Adjust the font size to make it smaller */
+}
+
+.category p {
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(9, 132, 209);
+}

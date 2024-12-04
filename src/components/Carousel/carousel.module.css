@@ -1,0 +1,34 @@
+/* .hero_img{
+    position: relative;
+}
+
+.hero_img::before{
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 300px;
+    background-image: linear-gradient(
+        to bottom,
+        rgba(225,225,225,0),
+        rgba(255,255,255)
+    );
+} */
+
+.hero_img {
+    position: relative;  /* Establishes a positioned context for the pseudo-element ::before */
+}
+
+/* .hero_img::before: The pseudo-element that appears on top of the .hero_img content, creating an overlay effect as described. */
+.hero_img::before {
+    content: "";  /* Inserts an empty pseudo-element before the content of .hero_img. */
+    position: absolute;  /* Positions the pseudo-element absolutely within the relative .hero_img. */
+    bottom: 0px;  /* Anchors the pseudo-element to the bottom of .hero_img. */
+    width: 100%;  /* Sets the pseudo-element's width to match the width of .hero_img. */
+    height: 300px;  /* Defines the height of the pseudo-element to be 300px. */
+    background-image: linear-gradient( /* Creates a gradient background for the pseudo-element. */
+        to bottom,  /* Specifies the direction of the gradient, from top to bottom. */
+        rgba(225, 225, 225, 0),  /* Starts the gradient with a fully transparent color. */
+        rgba(255, 255, 255)  /* Ends the gradient with a fully opaque white color. */
+    );
+}
