@@ -1,0 +1,4 @@
+node_modules/
+*.local
+# DKG: add .env file to be ignored by git 
+.env 
