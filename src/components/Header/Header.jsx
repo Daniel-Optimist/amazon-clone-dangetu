@@ -7,6 +7,7 @@ import LowerHeader from "./LowerHeader";
 
 import { Link } from "react-router-dom"; // to change all anchor tags <a href= ""  </a>  to <Link to="" </Link> The switch form anchor tags to the <Link> component is aimed at preventing full page reloads, w/c significantly improve user experience by avoiding delays and preserving crucial application state.
 import { DataContext } from "../DataProvider/DataProvider";
+import { auth } from "../../Utility/firebase"; // importing auth from firebase configuration to get auth.signOut() method
 
 function Header() {
   const [{ user, basket }, dispatch] = useContext(DataContext);
@@ -23,7 +24,7 @@ function Header() {
           {/* Logo section */}
           <div className={classes.logo_container}>
             {/* the forward slash gives us the landing page - we will return to a page with a click of the button associated with the page */}
-            <Link to="/">
+            <Link to={"/"}>
               <img
                 src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
                 alt="amazon logo"
@@ -45,7 +46,7 @@ function Header() {
               <option value="">All</option>
             </select>
             <input type="text" />
-            <BsSearch size={25} />
+            <BsSearch size={38} />
           </div>
           {/* other selection */}
 
@@ -60,9 +61,20 @@ function Header() {
               </select>
             </Link>
             {/* three components : signIn, Returns&Orders, and cart */}
-            <Link to="/auth">
-              <p>Sign In</p>
-              <span>Accounts & Lists</span>
+            <Link to={!user && "/auth"}>
+              <div>
+                {user ? (
+                  <>
+                    <p>Hello {user?.email?.split("@")[0]}</p>
+                    <span onClick={() => auth.signOut()}>Sign Out</span>
+                  </>
+                ) : (
+                  <>
+                    <p>Hello, Sign In </p>
+                    <span>Account & Lists</span>
+                  </>
+                )}
+              </div>
             </Link>
             {/* orders */}
             <Link to="/orders">

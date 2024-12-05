@@ -1,19 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+
+// import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 // import './App.css'
-import Header from './components/Header/Header'
-import { Carousel } from 'react-responsive-carousel'
-// import Testz1 from './Test/Testz1'
-// import Testz2 from './Test/Testz2'
-import CarouselEffect from './components/Carousel/CarouselEffect'
-import Category from './components/Category/Category'
-import Product from './components/Product/Product'
-import { Router } from 'react-router-dom'
 import Routing from './Routing'
+import react, { useContext, useEffect } from "react";
+import { Type } from './Utility/action.type'
+import { auth } from './Utility/firebase'
+import { DataContext } from './components/DataProvider/DataProvider'
 
 
 function App() {
+  const [{ user }, dispatch] = useContext (DataContext);  
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        // console.log(authUser)
+        dispatch({
+          type: Type.SET_USER,
+          user: authUser,
+        });
+      } else {
+        dispatch({
+          type: Type.SET_USER,
+          user: null,
+        });
+      }
+    });
+  }, []);
+
 
 
   return (
