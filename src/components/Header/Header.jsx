@@ -10,7 +10,7 @@ import { DataContext } from "../DataProvider/DataProvider";
 import { auth } from "../../Utility/firebase"; // importing auth from firebase configuration to get auth.signOut() method
 
 function Header() {
-  const [{ user, basket }, dispatch] = useContext(DataContext);
+  const [{ user, basket }, dispatch] = useContext(DataContext); // useContext hook to grab data from DataContext
 
   // to get the total item added in the basket ; use totalItem in the span with in the Link for cart below
   const totalItem = basket?.reduce((amount, item) => {

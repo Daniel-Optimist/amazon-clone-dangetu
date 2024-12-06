@@ -42,7 +42,10 @@ app.post("/payment/create", async (req, res) => {
     })
   }
 });
-exports.api = onRequest(app); // our app is being served via firebase using firebase's onRequest method instead of listening by itself
+exports.api = onRequest(app);  // our app is being served via firebase using firebase's onRequest method instead of listening by itself; the firebase emmulator generates a local(http://127.0.0.1) api endpoint with port number (5001) and our project name registered in firebase for listening: http://127.0.0.1:5001/clone-dangetu/us-central1/api 
+
+
+
 
 //The comments bellow are the comments when functions was created with firebase init
 
