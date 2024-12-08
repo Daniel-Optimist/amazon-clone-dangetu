@@ -13,12 +13,13 @@ import CurrencyFormat from "../../components/CurrencyFormat/CurrencyFormat";
 import { axiosInstance } from "../../API/axios";
 import { ClipLoader } from "react-spinners";
 
-import { db } from "../../Utility/firebase";//importing firestore db from firebase.js in Utility folder
+import { db } from "../../Utility/firebase"; //importing firestore db from firebase.js in Utility folder
 import { useNavigate } from "react-router-dom";
+import { Type } from "../../Utility/action.type";
 
 
 function Payment() {
-  const [{ user, basket }] = useContext(DataContext); //useContext hook to grab basket data from DataContext
+  const [{ user, basket }, dispatch] = useContext(DataContext); //useContext hook to grab basket data from DataContext
   console.log(user); //see on console at this line
   // to get the total item added in the basket
   const totalItem = basket?.reduce((amount, item) => {
@@ -34,7 +35,7 @@ function Payment() {
   const elements = useElements();
   const [cardError, setCardError] = useState(null);
   //state for spinner when payment is being processed; initally set false
-  const [processing, setProcessing] =useState(false)
+  const [processing, setProcessing] = useState(false);
 
   //  e refers to an event
   const handleChange = (e) => {
@@ -81,24 +82,21 @@ function Payment() {
           amount: paymentIntent.amount,
           created: paymentIntent.created,
         });
-      // empty the basket
-      // dispatch({ type: Type.EMPTY_BASKET });
+      // empty the basket coz orders has been set in the db w/c is permanent ; first add empty_basket type in action.type.js and then add case in reducer.js that makes basket empty array. Dispatch takes type and data but here we don't need data; import type at payment.jsx too
+      dispatch({ type: Type.EMPTY_BASKET });
 
       setProcessing(false); //once promise is resolved
       //to take us back to orders route (page) once payment is complete (const navigate =useNavigate()-see above for this const)
       navigate("/orders", { state: { msg: "You have placed a new order" } });
-    }catch (error){
-      console.log(error)
-      setProcessing(false)
+    } catch (error) {
+      console.log(error);
+      setProcessing(false);
     }
-      // if (error) {
-      //   setCardError(error.message);
-      //   setProcessing(false);
-      //   return; // Exit early if there's an error
-      }
-      
-      
-
+    // if (error) {
+    //   setCardError(error.message);
+    //   setProcessing(false);
+    //   return; // Exit early if there's an error
+  };
 
   return (
     <Layout>
@@ -151,16 +149,16 @@ function Payment() {
                   </div>
                   {/* type= "submit" indicates form will be submitted when this button is clicked -Onsubmit-handle Payment fn called */}
                   <button type="submit">
-                    {
-                    processing? (
+                    {processing ? (
                       <div className={classes.loading}>
-                        <ClipLoader color='grey' size={12}/>
+                        <ClipLoader color="grey" size={12} />
                         <p>Please wait...</p>
                       </div>
-                    ) :"Pay Now"
-                    }; 
-                    
-                    </button>
+                    ) : (
+                      "Pay Now"
+                    )}
+                    ;
+                  </button>
                 </div>
               </form>
             </div>

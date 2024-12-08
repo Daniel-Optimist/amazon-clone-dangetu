@@ -6,7 +6,7 @@ import Payment from "./Pages/Payment/Payment";
 import Orders from "./Pages/Orders/Orders";
 import Cart from "./Pages/Cart/Cart";
 import Results from "./Pages/Results/Results";
-import ProductDetail from './Pages/ProductDetail/ProductDetail'
+import ProductDetail from "./Pages/ProductDetail/ProductDetail";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -16,7 +16,6 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 const stripePromise = loadStripe(
   "pk_test_51QSZ8JGKaKfQJsahRjKU3lDozsRnBOfo6pFLIPoGobxoz2B7ZJadmAdq55895t352Jz17NtBf2277uCKf94rubtH00TlZPVIEU"
 ); // dkg: the PK Key I got loggin in is the same as that given in the documentation; is this expected (probably since it is public)
-
 
 function Routing() {
   return (

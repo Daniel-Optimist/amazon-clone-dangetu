@@ -1,0 +1,28 @@
+/* outer container greyish and inner container whitish */
+.container {
+  background-color: #efeeee;
+  padding: 30px;
+}
+
+.orders_container {
+  background-color: #fff;
+  padding: 20px;
+}
+/* primary-shade included in our index.css : used by amazon (logo, search box edge, solid line orders title etc ) */
+.orders_container h2 {
+  border-bottom: 2px solid var(--primary-shade);
+  padding: 20px;
+}
+
+/* padding for p elt with order id; note I didn't use double underscores  */
+.orders_container p {
+  padding: 12px;
+}
+
+/* make product img and its desc smaller and make it important to overide its dimensions elsewhere */
+.orders_container img {
+  width: 100px !important;
+}
+.orders_container div {
+  height: auto !important;
+}

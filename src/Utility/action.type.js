@@ -4,7 +4,7 @@ export const Type = {
   ADD_TO_BASKET: "ADD_TO_BASKET",
   REMOVE_FROM_BASKET: "REMOVE_FROM_BASKET",
   SET_USER: "SET_USER",
-  // EMPTY_BASKET: "EMPTY_BASKET",
+  EMPTY_BASKET: "EMPTY_BASKET",
 };
 
 // to represent a key-value pair with the same name, you can use the name only once and separate it with a comma. For instance :

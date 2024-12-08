@@ -53,6 +53,12 @@ export const reducer = (state, action) => {
         ...state,
         basket: newBasket,
       };
+      // only make basket empty array 
+  case Type.EMPTY_BASKET : return{
+    ...state, 
+    basket:[],
+  }
+
     // Handle the action type 'SET_USER'
     case Type.SET_USER:
       return {
