@@ -21,8 +21,8 @@ app.get("/", (req, res) => {
 
 // post request for payment : sending payment from basket ; payment intent creation; async coz we make a call to stripe and it returns a promise
 app.post("/payment/create", async (req, res) => {
-  // payment from user using query
-  const total = req.query.total;
+  // payment from user using query; parseInt to change text to integer
+  const total = parseInt(req.query.total);
   //   stripe process only payment>0
   if (total > 0) {
     // console.log("payment received", total);
