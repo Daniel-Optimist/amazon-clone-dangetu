@@ -10,6 +10,7 @@ import ProductDetail from './Pages/ProductDetail/ProductDetail'
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid recreating the `Stripe` object on every render.
 const stripePromise = loadStripe(
@@ -23,14 +24,37 @@ function Routing() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/auth" element={<Auth />} />
-        <Route path="/payments"element={
-            <Elements stripe ={stripePromise}>
-              <Payment />
-            </Elements>
-          } 
-          />
+        <Route
+          path="/payments"
+          element={
+            // for non-authorized user
+            <ProtectedRoute
+              msg={"You must be logged in to pay"}
+              // redirect to payment page
+              redirect={"/payments"}
+            >
+              {/* for authorized user */}
+              <Elements stripe={stripePromise}>
+                <Payment />
+              </Elements>
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="/orders" element={<Orders />} />
+        <Route
+          path="/orders"
+          element={
+            // for non-authorized user
+            <ProtectedRoute
+              msg={"You must be logged in to access your orders"}
+              // redirect to orders page
+              redirect={"/orders"}
+            >
+              {/* for authorized user */}
+              <Orders />
+            </ProtectedRoute>
+          }
+        />
         {/* dynamic routing for results  */}
         <Route path="/category/:categoryName" element={<Results />} />
 

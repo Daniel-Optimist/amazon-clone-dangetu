@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import classes from "./signUp.module.css";
 import Layout from "../../components/Layout/Layout";
-import { Link , useNavigate} from "react-router-dom";
+import { Link , useNavigate, useLocation} from "react-router-dom";
 import { auth } from "../../Utility/firebase"; //importing it from the configuration file (firebase.js)
 import {
   signInWithEmailAndPassword,
@@ -24,7 +24,10 @@ function Auth() {
   });  //initially set not to spin!
   // console.log (password, email)  // you will see in the console email and pw values entered in the browser
   const [{ user }, dispatch] = useContext(DataContext); //using the useContext hook to access the context value provided by the DataContext from DataProvider component
-  const navigate = useNavigate()  // store useNavigate() hook in navigate
+  const navigate = useNavigate()  // store useNavigate() hook in navigate and use in payment and protectedRoute components 
+  const navStateData=useLocation() // this hook helps to access msg and redirect states from ProtectedRoute component 
+  console.log(navStateData) // note the values assigned to navigationState at ProtectedRoute will be shown (inspect the app)
+
   // function for sgnIn and sgnUp
   console.log (user)
   const authHandler = async (e) => {
@@ -44,7 +47,8 @@ function Auth() {
             // Pass the user information from 'userInfo.user' to the action payload
           });
           setLoading({ ...loading, signIn: false }); //no spin coz signIn is false(not in progress)
-          navigate("/"); // Redirects the user to the "/" home route after signing in.
+          navigate(navStateData?.state?.redirect || "/"); // Redirects the user to the redirect("/payment") or "/" home route after signing in.
+          
         })
         .catch((error) => {
           // console.log(error.message);
@@ -61,7 +65,7 @@ function Auth() {
             user: userInfo.user,
           });
           setLoading({ ...loading, signUp: false }); //no spin when signUp=false(notInProgress);
-          navigate("/"); // Redirects the user to the "/" home route after signing up.
+          navigate(navStateData?.state?.redirect || "/"); // Redirects the user to the redirect("/payment") or "/" home route after signing up.
         })
         .catch((error) => {
           // console.log(error);
@@ -74,7 +78,7 @@ function Auth() {
     // parent section (Login) for logo in Link and the div
     <section className={classes.login}>
       {/* Logo */}
-      <Link>
+      <Link to={"/"}>
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/905px-Amazon_logo.svg.png"
           alt=""
@@ -85,6 +89,20 @@ function Auth() {
       {/* div : for title of form (h1), form, agreement, and acctCrtgBtn  */}
       <div className={classes.login_container}>
         <h1> Sign-In</h1>
+        {/* ensure optional chaining to avoid error when data is unavailable  */}
+        {navStateData?.state?.msg && (
+          <small
+            style={{
+              padding: "5px",
+              textAlign: "center",
+              color: "red",
+              fontWeight: "bold",
+            }}
+          >
+            {navStateData?.state?.msg}
+          </small>
+        )}
+
         <form action="">
           {/* div for email */}
           <div>
@@ -134,7 +152,6 @@ function Auth() {
           ) : (
             "Create your Amazon Account"
           )}
-         
         </button>
         {/* If 'error' exists (is truthy), render a small element displaying the
         error message */}
