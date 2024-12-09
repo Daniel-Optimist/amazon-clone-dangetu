@@ -3,10 +3,15 @@ const logger = require("firebase-functions/logger");
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const { setGlobalOptions } = require("firebase-functions");
 dotenv.config(); // configured to be able to read the keys in .env files
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const app = express();
+
+// This has to be set prior to deployment via firebas functions as our blaze plan does not support the default 100 max instance; Additionally, our maxInstances: 10 suffices for our app. 
+// setGlobalOptions({maxInstances:10})
+
 app.use(cors({ origin: true })); // origin true for all cors to work
 app.use(express.json());
 

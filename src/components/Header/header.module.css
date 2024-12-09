@@ -63,6 +63,11 @@
     border:none;
 }
 
+.search select {
+	border: none;
+	background-color: #fff;
+}
+
 .search input {
     border: 1px solid white;
     width: 100%;
@@ -125,7 +130,7 @@
     top: -6px;
     font-size: 20px;
     background-color: #1a1a1a;
-    left: 14px;
+    left: 16px;  /*14px*/
     color: orange;
 }
 
@@ -153,10 +158,11 @@
 }
 .lower_container ul li:first-child{
     display: flex;
-    gap:2px;
+    gap: 2px;
     align-items: center;
 }
 
+/* screen : style applies to devices with screen, i.e., excluding other media types (eg screen) ; max-width: 578px: applies to viewport width <=576px */
 @media screen and (max-width: 576px) {
     .header_container {
         display: flex;
@@ -173,6 +179,6 @@
     }
 }
 
- /* border:none; */
+
 
 
