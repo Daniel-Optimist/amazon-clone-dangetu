@@ -36,6 +36,7 @@ function Payment() {
   const [cardError, setCardError] = useState(null);
   //state for spinner when payment is being processed; initally set false
   const [processing, setProcessing] = useState(false);
+  const navigate = useNavigate()
 
   //  e refers to an event
   const handleChange = (e) => {
