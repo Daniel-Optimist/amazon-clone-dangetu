@@ -17,7 +17,6 @@ import { db } from "../../Utility/firebase"; //importing firestore db from fireb
 import { useNavigate } from "react-router-dom";
 import { Type } from "../../Utility/action.type";
 
-
 function Payment() {
   const [{ user, basket }, dispatch] = useContext(DataContext); //useContext hook to grab basket data from DataContext
   console.log(user); //see on console at this line
@@ -36,7 +35,7 @@ function Payment() {
   const [cardError, setCardError] = useState(null);
   //state for spinner when payment is being processed; initally set false
   const [processing, setProcessing] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   //  e refers to an event
   const handleChange = (e) => {
@@ -158,7 +157,6 @@ function Payment() {
                     ) : (
                       "Pay Now"
                     )}
-                    ;
                   </button>
                 </div>
               </form>

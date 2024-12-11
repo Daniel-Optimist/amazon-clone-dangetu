@@ -2,7 +2,7 @@
 // import { initializeApp } from "firebase/app";//modify this by adding /compat after firebase and comment it out 
 import firebase from "firebase/compat/app";
 
-//DKG- additional import I made for getauth function (notice these import setup may differ in previous and future setups)
+//DKG- additional import I made for getauth function (notice these import setup may differ in previous and future setups); 
 import {getAuth} from "firebase/auth"
 import "firebase/compat/firestore"
 import "firebase/compat/auth"
@@ -24,7 +24,7 @@ const app = firebase.initializeApp(firebaseConfig) // Use this line for compat
 //DKG exports I made to make them available for use by other components 
 export const auth= getAuth(app)
 // export const db=app.firestore()
-export const db = firebase.firestore(); // Use firebase.firestore() for compat
+export const db = firebase.firestore(); // Use firebase.firestore() for compat ; Bek suggested export const db =app.firestore() could also work
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
